@@ -23,6 +23,4 @@
   prompt at SHA-256
   `4cb96c7c117a1a94070816f0eb4a70b6907179cb3f3be80a1704b5b3c9ef4f24`.
 - `git diff --check` passed for the prompt and README changes.
-- The updated Scribe rules passed two fresh forward tests. A full run with this
-  branch installed as the active model prompt remains pending because the local
-  Codex Desktop installation denied direct execution of `codex.exe`.
+- The updated Scribe rules passed two fresh forward tests.
