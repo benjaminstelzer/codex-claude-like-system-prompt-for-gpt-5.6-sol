@@ -44,7 +44,7 @@ Send this prompt to Codex:
 ```text
 Install the GPT-5.6 Sol system prompt permanently as my global Codex base instructions:
 
-https://raw.githubusercontent.com/benjaminstelzer/codex-claude-like-system-prompt-for-chapt-5.6-sol/main/gpt-5.6-sol-system-prompt-claude-like.md
+https://raw.githubusercontent.com/benjaminstelzer/codex-claude-like-system-prompt-for-gpt-5.6-sol/main/gpt-5.6-sol-system-prompt-claude-like.md
 
 Requirements:
 
@@ -71,7 +71,10 @@ Requirements:
 Report the installed path, configuration path, whether the configuration changed, and the verification results. Do not print secrets, unrelated settings, or the downloaded prompt.
 ```
 
-Then restart Codex and open a new session. If it opens by complimenting your question, the install did not take.
+Then restart Codex and open a new session. If it still opens by complimenting
+your question, re-check the configured `model_instructions_file` and model. The
+behavior suggests that the override may not be active, but does not establish
+which part of the setup failed.
 
 ## Maintenance
 
