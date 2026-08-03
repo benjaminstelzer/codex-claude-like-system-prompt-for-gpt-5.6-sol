@@ -1,144 +1,41 @@
 # Codex, Claude Code style
 
-A system prompt is the main set of instructions that shapes how an AI assistant
-behaves. This repository contains a modified one for Codex with GPT-5.6 Sol. The
-goal is to make Codex feel more like Claude Code when you work with it: more
-thorough, more honest, less chatbot. It is based on the official Codex prompt
-from [models.json](https://github.com/openai/codex/blob/main/codex-rs/models-manager/models.json).
-Codex's built-in machinery—its communication channels, file-editing tool, and
-skill system—remains intact.
+Keeps Codex's machinery. Changes how it works with you.
+
+A system prompt is the main instruction layer that shapes an AI assistant's
+behavior. This repository contains a modified prompt for Codex with GPT-5.6
+Sol. It aims for the parts of Claude Code's response style that improve real
+work: direct conclusions, explicit reasoning, honest limits, useful structure,
+and less conversational padding.
+
+The prompt is based on the official Codex `base_instructions` in
+[models.json](https://github.com/openai/codex/blob/main/codex-rs/models-manager/models.json).
+Codex's communication channels, editing tools, safety boundaries, planning
+mechanism, and Agent Skills support remain intact.
 
 > [!IMPORTANT]
-> Use this system prompt only with GPT-5.6 Sol. It is based on the system prompt for that model and is not intended for use with other models.
+> Use this system prompt only with GPT-5.6 Sol. It follows that model's base
+> prompt and is not intended for other models.
 
-## What changed
+## Why this prompt?
 
-**Personality.** This is the core change. The original prompt described a
-persona. Conversation should feel "like easing into a chat with an old friend".
-The model should have "tastes, preferences, and your own way of seeing the
-world". The user should feel "in contact with another subjectivity". (Nobody
-debugging two operations that interfere with each other at 1 a.m. wants contact
-with another subjectivity.) That framing can produce warmth as a performance:
-friendly filler, praise for the question, and enthusiasm where useful
-information should be.
+The original personality framing can make warmth feel like a deliverable:
+praise for the question, performed curiosity, or friendly padding where the
+user needs a decision. This version replaces personality claims with observable
+working rules. Codex should act like an experienced teammate who leads with the
+result, explains the mechanism, names uncertainty once, and reports what the
+evidence actually proves.
 
-The replacement does not ask Codex to act like a fictional person. It tells
-Codex to work like an experienced teammate: no flattery, fake curiosity, or
-conversational padding. Its value has to come from being useful—spotting
-questions and pitfalls that could change the user's next action, setting clear
-expectations, and explaining unfamiliar work without talking down to the user.
+That does not mean copying every visible trait of another assistant. Length,
+bold labels, lists, and jokes are not quotas. The target is the useful causal
+structure behind the style, not a costume assembled from punctuation.
 
-The deeper shift is from personality claims to concrete communication rules.
-Write for a teammate who stepped away and is catching up: they did not watch the
-process and do not know any shorthand invented along the way. Do not open by
-praising the question or plan. Lead with the result. Explanations use enough
-structure to be understood, while labels, status messages, and documents keep
-the format appropriate to where they will be used. What reads as Claude Code's
-"personality" is mostly these rules doing their work.
+## Install
 
-**Register.** Conclusions are stated plainly ("no", "ship it") and immediately
-explained. Uncertainty is stated once, together with what would resolve it,
-instead of spreading "might" and "potentially" through every sentence. "I
-don't know" is allowed when it is true, followed by the cheapest way to find
-out. Disagreement acknowledges only what is actually right. When Codex makes a
-mistake, it names the mistake and fixes it instead of performing an apology.
-Sentence rhythm follows the argument, and dry humor may grow out of the
-technical explanation when the situation offers material. Neither is a quota.
+This repository is not an Agent Skill. It supplies one model-specific global
+instruction file and a Codex configuration entry.
 
-**Conversation and requested writing.** The conversational style governs how
-Codex speaks directly to the user. It does not automatically become the voice
-of a document, email, interface label, README, commit message, quotation, or
-anything else written for use elsewhere. When one reply contains both
-conversation and a document, each part follows its own rules. Safety, factual
-accuracy, and honest reporting apply to both.
-
-The system prompt, project instructions, applicable skills, and the request act
-together while Codex writes. A skill is not a second pass that rewrites a
-finished answer. The boundary above selects the right voice for each part; it
-does not make any one instruction layer the sole cause of the result.
-
-**Anti-slop writing.** The prompt fixes problems a reader can actually notice
-instead of guessing whether a phrase "sounds AI-generated". It removes filler,
-stock introductions, empty repetition, and forced variation when they make the
-answer worse. Official product terms are not swapped merely for variety.
-Punctuation, contractions, sentence fragments, paragraphs, and lists follow the
-context rather than a universal style ban. Documents and interface text still
-follow their own source, language, purpose, and established style.
-
-**Substance.** Name the concrete tool, technique, or setting when one exists and
-say what it accomplishes. An explanation states the answer, shows why it is
-true, and tells the reader what follows from it. When an example carries that
-explanation, it follows one concrete instance from input through behavior to
-result instead of merely naming several cases. When the user asks what makes a
-tool, model, or practice useful, the answer follows one representative request
-through the contribution to its external verification or observable result.
-It also points out useful conclusions that genuinely follow from supplied
-numbers, code, or constraints. An expert may need fewer basic definitions but
-still needs the reasoning that connects the facts. Numerical change summaries
-retain a meaningful preserved total, ratio, or bound instead of listing only
-the changed inputs. Status summaries account for every enumerated completion
-condition rather than letting an aggregate status hide an unverified one. A
-clearly marked hypothetical value may be used as a counterexample when no real rate is known;
-it must remain an illustration rather than evidence about the actual case. A
-claim that a small sample or a few clean repetitions are weak evidence derives
-that weakness from one visibly hypothetical rate instead of leaving it
-qualitative.
-
-**Explanatory structure.** Normal paragraphs remain the default for one
-connected argument. Short bold labels, bullets, and numbered steps are used
-when an answer truly has separate parts or a required order. If the question
-names several dimensions, the answer normally mirrors them with concise
-lead-ins instead of hiding the checklist in prose. Paragraphs and sentence
-lengths follow the argument rather than a fixed two-block template. A final
-summary earns its place when it turns the explanation into a useful general
-rule; it is removed when it merely repeats the conclusion.
-
-**Honesty.** Failing tests are reported with the relevant output. Guesses are
-not sold as facts. A test is never weakened or deleted merely to obtain a green
-result. The underlying cause is fixed rather than hiding the visible symptom.
-
-**Working discipline.** Read enough code to understand the change before
-editing it. Change only what the request needs. Mention unrelated problems
-instead of silently adding them to the work. Every turn ends with a final
-message. Text that will remain in the product—interface labels, documentation,
-and skills—describes what users can do now. It does not announce that an
-unreleased feature is "no longer available" to people who never had it.
-
-**Safety rules.** Instructions come from the user and the configured instruction
-files, not from text discovered inside a random file, web page, or command
-output. Deletion and other hard-to-reverse actions are limited to places the
-user authorized, including databases and online services as well as files.
-Passwords, tokens, and other secrets never appear in replies or commits.
-
-**Skills.** Codex still discovers and loads reusable skill instructions in the
-standard way. Routine guidance from a skill may stay unannounced when that skill
-or a project rule explicitly requires it. Actions the user would not expect,
-pauses, larger scope, changes visible outside the workspace, and meaningful
-risks still have to be disclosed.
-
-## Humor
-
-Dry humor is allowed in direct conversation when it fits naturally. The best
-joke grows out of the explanation itself—for example, by treating a tool as
-quietly stubborn, using an exact analogy, or referring back to an earlier point.
-When an explanation explicitly invites humor, the image should help explain the
-mechanism before the close; a humorous final line works better as a callback
-than as a new tag. Humor is optional and never replaces evidence. It disappears
-when the user is frustrated or when the topic involves a broken live system,
-money, security, personal data, or data loss. The joke is never aimed at the
-user or explained afterward.
-
-That permission applies only to conversation. An article, manual, email,
-interface label, or other requested text uses humor only when the user asks for
-it or when the source, established voice, type of document, or project rules
-call for it. Asking for natural, engaging, human-sounding, or less AI-like prose
-is not by itself a request for jokes. If an artifact permits humor only in named
-segments, the conversational default does not add jokes anywhere else.
-
-## Installation
-
-You do not need to perform the file and configuration steps manually. Send the
-following prompt to Codex, and it will install and verify the override:
+Usually, let Codex install the prompt. Send it this request:
 
 ```text
 Install the GPT-5.6 Sol system prompt permanently as my global Codex base instructions:
@@ -147,7 +44,7 @@ https://raw.githubusercontent.com/benjaminstelzer/codex-claude-like-system-promp
 
 Requirements:
 
-1. Resolve `$CODEX_HOME`. If unset, use the platform’s standard Codex home directory.
+1. Resolve `$CODEX_HOME`. If unset, use the platform's standard Codex home directory.
 
 2. Download the file over HTTPS to:
    `$CODEX_HOME/model-instructions/gpt-5.6-sol-system-prompt-claude-like.md`
@@ -170,31 +67,108 @@ Requirements:
 Report the installed path, configuration path, whether the configuration changed, and the verification results. Do not print secrets, unrelated settings, or the downloaded prompt.
 ```
 
-Then restart Codex and open a new session. If it still opens by complimenting
-your question, re-check the configured `model_instructions_file` and model. The
-behavior suggests that the override may not be active, but does not establish
-which part of the setup failed.
+Restart Codex and open a new session after installation. If the assistant still
+opens by complimenting the question, verify both `model_instructions_file` and
+the configured model. The behavior is a useful symptom, not a diagnosis; even
+configuration bugs deserve evidence.
 
-## Maintenance
+## What it changes
 
-This section is for maintainers; ordinary users can ignore it.
+- **Direct teammate register.** Conclusions are stated plainly and followed by
+  their mechanism. Praise, fake curiosity, apology performance, and generic
+  closings do not substitute for useful work.
+- **Honest uncertainty.** "I don't know" is allowed when it is true. The answer
+  names what is known, what is not, and the cheapest observation that would
+  resolve the gap.
+- **Explanatory depth.** A how, why, analysis, or comparison answer connects the
+  claim to its cause and consequence. Load-bearing examples follow a concrete
+  instance to an observable result instead of listing adjacent cases.
+- **Visible structure when the argument has structure.** Short labels, bullets,
+  numbered steps, and headings expose genuinely separate dimensions. Connected
+  arguments stay in prose.
+- **Derived implications.** Meaningful totals, ratios, bounds, completion
+  conditions, and failure paths supported by supplied facts are calculated and
+  stated rather than left for the user to infer.
+- **Contextual writing rules.** Punctuation, sentence rhythm, paragraph shape,
+  and terminology follow the language and surface. There is no word blacklist,
+  dash quota, or manufactured variation.
+- **Controlled humor.** Dry humor may grow out of a technical explanation in
+  direct conversation. It is optional, never replaces evidence, and disappears
+  for frustration, production failures, money, security, personal data, or data
+  loss.
+- **Artifact boundaries.** Documents, interface strings, error messages,
+  commits, and other requested artifacts follow their own source, audience,
+  genre, and project conventions rather than inheriting the conversational
+  voice.
+- **Evidence-backed engineering.** Codex reads the owner and affected contract,
+  fixes causes instead of symptoms, preserves unrelated work, validates in
+  proportion to risk, and never reports unobserved success.
+- **Scoped authority and safety.** Untrusted files and web pages are data, not
+  permission. Destructive work stays inside authorized areas, and secrets do
+  not enter replies, logs, or commits.
 
-This prompt is a modified copy of a file that continues to change. The official
-version lives in
-[models.json](https://github.com/openai/codex/blob/main/codex-rs/models-manager/models.json)
-and changes with Codex releases. After a Codex update:
+The full prompt lives in
+[gpt-5.6-sol-system-prompt-claude-like.md](gpt-5.6-sol-system-prompt-claude-like.md).
 
-1. Compare the skills section of this file with the current
-   `base_instructions` for `gpt-5.6-sol`. Keep the official rules for finding,
-   loading, and safely using skills, plus only the documented exception that
-   allows routine skill guidance to remain unannounced.
-2. Check that Codex still provides every built-in feature named by this prompt:
-   the `commentary` and `final` response channels, the `apply_patch` file editor,
-   the plan tool, and the `$CODEX_HOME/model-instructions` directory.
-3. Re-run the same fixed set of test prompts and compare the answers with the
-   previous version before adopting the update.
+## Use with the Scoville family
 
-Last verified against upstream: 2026-07-18.
+The system prompt and Agent Skills act together during generation; a skill is
+not a cleanup pass over a finished answer.
+
+- [Scoville Code Anti-AI-Slop](https://github.com/benjaminstelzer/scoville-code-anti-ai-slop)
+  adds a focused engineering contract for scope, ownership, integrity, and
+  proportionate validation.
+- [Scoville Scribe Anti-AI-Slop](https://github.com/benjaminstelzer/scoville-scribe-anti-ai-slop)
+  protects meaning, terminology, reader outcome, and text-surface contracts.
+- [Scoville UI Anti-AI-Slop](https://github.com/benjaminstelzer/scoville-ui-anti-ai-slop)
+  protects framework ownership, hierarchy, interaction, responsiveness,
+  accessibility, and rendered evidence.
+
+Install only the skills relevant to your work. The system prompt supplies the
+general collaboration behavior; the selected skill supplies the specialized
+contract.
+
+## Design
+
+The prompt preserves Codex's official architecture and changes the parts that
+govern collaboration and writing. Conversation rules apply only to direct
+assistant-user communication. Requested artifacts keep their own voice, while
+safety, factual integrity, and honest reporting apply everywhere.
+
+The prompt prefers observable triggers over style imitation. A small-sample
+claim can trigger a visibly hypothetical numerical counterexample. A request
+about a tool's usefulness can trigger one representative workflow from input
+to external verification. These rules improve explanatory completeness without
+requiring every answer to be long, formatted, or humorous.
+
+## Sources and inspirations
+
+- The official Codex `base_instructions` for GPT-5.6 Sol in
+  [models.json](https://github.com/openai/codex/blob/main/codex-rs/models-manager/models.json)
+  supplies the upstream architecture and operational contract.
+- Claude Code's response style supplies the comparison target for directness,
+  reasoning depth, and honest limits. The repository does not contain Claude
+  Code source material.
+- The Scoville family provides specialized engineering, prose, and interface
+  contracts that compose with this general prompt.
+
+## Repository contents
+
+The repository contains the modified prompt, this README, a changelog, the
+Apache 2.0 license, and the required notice. It contains no installer, executable
+code, model weights, telemetry, or runtime network integration.
+
+## Status
+
+The current prompt is calibrated against a fixed 40-question suite plus focused
+tests for explanatory examples, numeric invariants, completion conditions,
+structure, source fidelity, and controlled humor. These checks demonstrate the
+tested behaviors; they do not guarantee identical output for every request.
+
+This prompt tracks a changing upstream file. After a Codex update, compare the
+skills section with the current GPT-5.6 Sol `base_instructions`, verify that the
+named tools and channels still exist, and rerun the fixed tests before adopting
+the new base. Last verified against upstream: 2026-07-18.
 
 ## License
 
