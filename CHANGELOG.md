@@ -1,5 +1,15 @@
 # Changelog
 
+## 2026-08-03: Fable naming alignment
+
+### Changed
+
+- Named the repository, prompt file, and README for the Fable 5 outputs that
+  supplied the actual comparison target.
+- Made the system prompt state that it adopts observed response mechanics from
+  Fable 5 without copying unsupported claims or model identity.
+- Updated installation URLs and paths to use the Fable-aligned names.
+
 ## 2026-08-03: Family documentation alignment
 
 ### Changed
