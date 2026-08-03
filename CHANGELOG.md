@@ -1,5 +1,30 @@
 # Changelog
 
+## 2026-08-03: Joint prompt and Scribe calibration
+
+### Changed
+
+- Clarified that the system prompt, project instructions, skills, and request
+  act together during generation rather than as isolated writing passes.
+- Made explicitly multi-part questions trigger matching lead-ins without
+  forcing labels onto short connected arguments.
+- Allowed visibly hypothetical numerical counterexamples when an unknown real
+  rate would otherwise hide the mechanism.
+- Let argument structure determine paragraph rhythm and made useful closing
+  syntheses more salient without adding a summary quota.
+- Integrated invited humor into the explanation before a callback and made
+  artifact-local humor restrictions override the conversational permission.
+- Bound required limitation sections to their affected claims or calculations.
+
+### Validation
+
+- `git diff --check` passed for the prompt, README, and changelog.
+- The staged prompt kept the existing `# Using skills` section and everything
+  after it byte-identical to `main`.
+- Focused contract checks found the matching composition, structure,
+  hypothetical-example, callback, synthesis, and limitation rules in the system
+  prompt and Scribe.
+
 ## 2026-08-02: Fable-style explanatory depth
 
 ### Changed
