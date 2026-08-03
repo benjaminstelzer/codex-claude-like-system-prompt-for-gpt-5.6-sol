@@ -19,8 +19,8 @@
   observable result instead of stopping at a list of named cases.
 - Made claims about weak small-sample evidence trigger a visibly hypothetical
   probability instead of remaining qualitative.
-- Grounded otherwise categorical explanations of practical usefulness or
-  failure in one representative case.
+- Made questions about what makes a tool, model, or practice useful trigger one
+  representative case through contribution and external verification.
 
 ### Validation
 
