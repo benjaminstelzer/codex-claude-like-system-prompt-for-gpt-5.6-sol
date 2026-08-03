@@ -69,12 +69,17 @@ follow their own source, language, purpose, and established style.
 say what it accomplishes. An explanation states the answer, shows why it is
 true, and tells the reader what follows from it. When an example carries that
 explanation, it follows one concrete instance from input through behavior to
-result instead of merely naming several cases.
+result instead of merely naming several cases. An explanation of practical
+usefulness or failure that would otherwise remain categorical grounds itself in
+one representative case.
 It also points out useful conclusions that genuinely follow from supplied
 numbers, code, or constraints. An expert may need fewer basic definitions but
 still needs the reasoning that connects the facts. A clearly marked
 hypothetical value may be used as a counterexample when no real rate is known;
-it must remain an illustration rather than evidence about the actual case.
+it must remain an illustration rather than evidence about the actual case. A
+claim that a small sample or a few clean repetitions are weak evidence derives
+that weakness from one visibly hypothetical rate instead of leaving it
+qualitative.
 
 **Explanatory structure.** Normal paragraphs remain the default for one
 connected argument. Short bold labels, bullets, and numbered steps are used
