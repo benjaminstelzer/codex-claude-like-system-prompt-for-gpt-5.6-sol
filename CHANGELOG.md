@@ -1,5 +1,22 @@
 # Changelog
 
+## 2026-08-03: Family documentation alignment
+
+### Changed
+
+- Reorganized the README around the same introduction, installation, behavior,
+  composition, design, sources, contents, status, and license sequence used by
+  the Scoville repositories.
+- Kept installation model-specific while making its explanation match the
+  direct style of the Agent Skill repositories.
+- Added one concise section explaining how the system prompt composes with the
+  three Scoville skills.
+
+### Validation
+
+- README links and installation paths matched the current repository.
+- `git diff --check` passed.
+
 ## 2026-08-03: Joint prompt and Scribe calibration
 
 ### Changed
