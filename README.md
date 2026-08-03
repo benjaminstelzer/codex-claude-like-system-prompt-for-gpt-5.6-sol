@@ -74,8 +74,11 @@ tool, model, or practice useful, the answer follows one representative request
 through the contribution to its external verification or observable result.
 It also points out useful conclusions that genuinely follow from supplied
 numbers, code, or constraints. An expert may need fewer basic definitions but
-still needs the reasoning that connects the facts. A clearly marked
-hypothetical value may be used as a counterexample when no real rate is known;
+still needs the reasoning that connects the facts. Numerical change summaries
+retain a meaningful preserved total, ratio, or bound instead of listing only
+the changed inputs. Status summaries account for every enumerated completion
+condition rather than letting an aggregate status hide an unverified one. A
+clearly marked hypothetical value may be used as a counterexample when no real rate is known;
 it must remain an illustration rather than evidence about the actual case. A
 claim that a small sample or a few clean repetitions are weak evidence derives
 that weakness from one visibly hypothetical rate instead of leaving it
