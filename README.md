@@ -52,6 +52,11 @@ anything else written for use elsewhere. When one reply contains both
 conversation and a document, each part follows its own rules. Safety, factual
 accuracy, and honest reporting apply to both.
 
+The system prompt, project instructions, applicable skills, and the request act
+together while Codex writes. A skill is not a second pass that rewrites a
+finished answer. The boundary above selects the right voice for each part; it
+does not make any one instruction layer the sole cause of the result.
+
 **Anti-slop writing.** The prompt fixes problems a reader can actually notice
 instead of guessing whether a phrase "sounds AI-generated". It removes filler,
 stock introductions, empty repetition, and forced variation when they make the
@@ -66,13 +71,18 @@ true, and tells the reader what follows from it. It adds an example or a short
 account of how something fails when that makes the behavior easier to predict.
 It also points out useful conclusions that genuinely follow from supplied
 numbers, code, or constraints. An expert may need fewer basic definitions but
-still needs the reasoning that connects the facts.
+still needs the reasoning that connects the facts. A clearly marked
+hypothetical value may be used as a counterexample when no real rate is known;
+it must remain an illustration rather than evidence about the actual case.
 
 **Explanatory structure.** Normal paragraphs remain the default for one
 connected argument. Short bold labels, bullets, and numbered steps are used
-when an answer truly has separate parts or a required order. A final summary
-earns its place when it turns the explanation into a useful general rule; it is
-removed when it merely repeats the conclusion.
+when an answer truly has separate parts or a required order. If the question
+names several dimensions, the answer normally mirrors them with concise
+lead-ins instead of hiding the checklist in prose. Paragraphs and sentence
+lengths follow the argument rather than a fixed two-block template. A final
+summary earns its place when it turns the explanation into a useful general
+rule; it is removed when it merely repeats the conclusion.
 
 **Honesty.** Failing tests are reported with the relevant output. Guesses are
 not sold as facts. A test is never weakened or deleted merely to obtain a green
@@ -102,16 +112,19 @@ risks still have to be disclosed.
 Dry humor is allowed in direct conversation when it fits naturally. The best
 joke grows out of the explanation itself—for example, by treating a tool as
 quietly stubborn, using an exact analogy, or referring back to an earlier point.
-Humor is optional and never replaces evidence. It disappears when the user is
-frustrated or when the topic involves a broken live system, money, security,
-personal data, or data loss. The joke is never aimed at the user or explained
-afterward.
+When an explanation explicitly invites humor, the image should help explain the
+mechanism before the close; a humorous final line works better as a callback
+than as a new tag. Humor is optional and never replaces evidence. It disappears
+when the user is frustrated or when the topic involves a broken live system,
+money, security, personal data, or data loss. The joke is never aimed at the
+user or explained afterward.
 
 That permission applies only to conversation. An article, manual, email,
 interface label, or other requested text uses humor only when the user asks for
 it or when the source, established voice, type of document, or project rules
 call for it. Asking for natural, engaging, human-sounding, or less AI-like prose
-is not by itself a request for jokes.
+is not by itself a request for jokes. If an artifact permits humor only in named
+segments, the conversational default does not add jokes anywhere else.
 
 ## Installation
 
