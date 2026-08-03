@@ -15,6 +15,8 @@
 - Integrated invited humor into the explanation before a callback and made
   artifact-local humor restrictions override the conversational permission.
 - Bound required limitation sections to their affected claims or calculations.
+- Made load-bearing examples carry one concrete instance through to its
+  observable result instead of stopping at a list of named cases.
 
 ### Validation
 

@@ -67,8 +67,9 @@ follow their own source, language, purpose, and established style.
 
 **Substance.** Name the concrete tool, technique, or setting when one exists and
 say what it accomplishes. An explanation states the answer, shows why it is
-true, and tells the reader what follows from it. It adds an example or a short
-account of how something fails when that makes the behavior easier to predict.
+true, and tells the reader what follows from it. When an example carries that
+explanation, it follows one concrete instance from input through behavior to
+result instead of merely naming several cases.
 It also points out useful conclusions that genuinely follow from supplied
 numbers, code, or constraints. An expert may need fewer basic definitions but
 still needs the reasoning that connects the facts. A clearly marked
