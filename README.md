@@ -69,9 +69,9 @@ follow their own source, language, purpose, and established style.
 say what it accomplishes. An explanation states the answer, shows why it is
 true, and tells the reader what follows from it. When an example carries that
 explanation, it follows one concrete instance from input through behavior to
-result instead of merely naming several cases. An explanation of practical
-usefulness or failure that would otherwise remain categorical grounds itself in
-one representative case.
+result instead of merely naming several cases. When the user asks what makes a
+tool, model, or practice useful, the answer follows one representative request
+through the contribution to its external verification or observable result.
 It also points out useful conclusions that genuinely follow from supplied
 numbers, code, or constraints. An expert may need fewer basic definitions but
 still needs the reasoning that connects the facts. A clearly marked
